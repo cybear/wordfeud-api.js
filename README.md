@@ -29,7 +29,31 @@ Default options for the HTTP requests against the WordFeud server.
 
 #### api.login(user, password, onComplete)
 
+Payload looks like this:
+```
+{
+    sessionId,
+    user: {
+        id,
+        username,
+        email
+    }
+}
+```
+
 #### api.loginWithId(id, password, sessionId, onComplete)
+
+Response looks like this:
+```
+{
+    sessionId: string,
+    user: {
+        id: number,
+        username: string,
+        email: string
+    }
+}
+```
 
 
 ### Games
@@ -40,7 +64,43 @@ Default options for the HTTP requests against the WordFeud server.
 
 #### api.getGames(sessionId, onComplete)
 
-
+Response looks like this:
+```
+[
+    {
+        updated: number,
+        is_running: boolean,
+        end_game: number,
+        read_chat_count: number,
+        id: number,
+        current_player: number,
+        created: number,
+        last_move: {
+            move: [ ...moves ],
+            points: number,
+            move_type: string,
+            user_id: number,
+            main_word: string
+        },
+        seen_finished: boolean,
+        players: [
+            {
+            username: string,
+            position: number,
+            score: number,
+            id: number,
+            avatar_updated: number
+            },
+            ...
+        ],
+        chat_count: number,
+        board: number,
+        move_count: number,
+        ruleset: number
+    },
+    ...
+]
+```
 
 ### Game invites
 
